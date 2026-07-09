@@ -1,0 +1,39 @@
+---
+// Header with logo + nav. `activePage` highlights the current page.
+// Pass it from each page: <Base activePage="vehicles">
+const {activePage = ''} = Astro.props
+
+const navItems = [
+  {href: '/vehicles', label: 'Vehicles', key: 'vehicles'},
+  {href: '/services', label: 'Services', key: 'services'},
+  {href: '/about',    label: 'About',    key: 'about'},
+  {href: '/blog',     label: 'Blog',     key: 'blog'},
+  {href: '/contact',  label: 'Contact',  key: 'contact'},
+]
+---
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo" aria-label="GAVI AFRICA LIMITED home">
+      <img src="/images/gavi-logo.png" alt="GAVI AFRICA" class="logo-img" />
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        {navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[{active: activePage === item.key}]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a href="/#booking" class="btn btn-primary header-cta">Book a Service →</a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

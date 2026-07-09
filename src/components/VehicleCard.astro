@@ -1,0 +1,141 @@
+---
+import {urlFor} from '../lib/sanity.js'
+
+/**
+ * Renders one vehicle as a grid card.
+ * Expects a `vehicle` prop shaped like the GROQ query result in queries.js.
+ */
+const {vehicle} = Astro.props
+
+// Format price with commas: 48500000 -> "48,500,000"
+const priceStr = new Intl.NumberFormat('en-NG').format(vehicle.price)
+
+// Badge label + class based on condition + status
+let badgeLabel = 'New'
+let badgeClass = 'new'
+if (vehicle.status === 'sold') {
+  badgeLabel = 'Sold'
+  badgeClass = 'sold'
+} else if (vehicle.status === 'reserved') {
+  badgeLabel = 'Reserved'
+  badgeClass = 'reserved'
+} else if (vehicle.condition === 'preowned') {
+  badgeLabel = 'Pre-owned'
+  badgeClass = 'preowned'
+}
+
+// Price label depends on condition + status
+let priceLabel = 'From'
+let priceValue = `₦${priceStr}`
+if (vehicle.status === 'sold') {
+  priceLabel = 'Status'
+  priceValue = 'Sold'
+} else if (vehicle.condition === 'preowned') {
+  priceLabel = 'Asking'
+}
+
+// Specs chips — filter out empties
+const specs = [
+  vehicle.bodyType,
+  vehicle.fuel,
+  vehicle.drivetrain,
+  vehicle.mileageKm > 0 ? `${new Intl.NumberFormat('en-NG').format(vehicle.mileageKm)} km` : '0 km',
+].filter(Boolean)
+
+// Card image — 800x600 crop from Sanity CDN
+const imgUrl = vehicle.photos && vehicle.photos.length
+  ? urlFor(vehicle.photos[0]).width(800).height(600).fit('crop').url()
+  : null
+const imgAlt = vehicle.photos?.[0]?.alt || `${vehicle.year} ${vehicle.make} ${vehicle.title}`
+---
+
+<article class="vehicle-card">
+  <div class="vehicle-photo">
+    <span class:list={['vehicle-badge', badgeClass]}>{badgeLabel}</span>
+    {imgUrl && <img src={imgUrl} alt={imgAlt} loading="lazy" />}
+  </div>
+  <div class="vehicle-body">
+    <div class="vehicle-meta">{vehicle.year} · {vehicle.make}</div>
+    <h3 class="vehicle-title">{vehicle.title}</h3>
+    <div class="vehicle-specs">
+      {specs.map(s => <span class="vehicle-spec">{s}</span>)}
+    </div>
+  </div>
+  <div class="vehicle-footer">
+    <div>
+      <div class="vehicle-price-label">{priceLabel}</div>
+      <div class="vehicle-price">{priceValue}</div>
+    </div>
+    <a href={`/vehicles/${vehicle.slug}`} class="vehicle-cta">Enquire →</a>
+  </div>
+</article>
+
+<style>
+  .vehicle-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 14px; overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex; flex-direction: column;
+  }
+  .vehicle-card:hover {
+    transform: translateY(-4px); border-color: var(--gavi-blue);
+    box-shadow: 0 16px 36px rgba(15, 26, 43, 0.08);
+  }
+  .vehicle-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--paper-soft);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .vehicle-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .vehicle-badge {
+    position: absolute; top: var(--s-3); left: var(--s-3);
+    padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    z-index: 2;
+  }
+  .vehicle-badge.new       { background: var(--gavi-blue); color: #fff; }
+  .vehicle-badge.preowned  { background: var(--ink); color: #fff; }
+  .vehicle-badge.reserved  { background: #C8102E; color: #fff; }
+  .vehicle-badge.sold      { background: var(--ink-mute); color: #fff; }
+  .vehicle-body {
+    padding: var(--s-5); flex-grow: 1;
+    display: flex; flex-direction: column; gap: var(--s-3);
+  }
+  .vehicle-meta {
+    font-size: 12px; color: var(--ink-mute);
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+  }
+  .vehicle-title { font-size: 18px; line-height: 1.2; }
+  .vehicle-specs {
+    display: flex; flex-wrap: wrap; gap: var(--s-2);
+    margin-bottom: var(--s-3);
+  }
+  .vehicle-spec {
+    font-size: 12px; padding: 4px 10px;
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px; color: var(--ink-soft); font-weight: 600;
+  }
+  .vehicle-footer {
+    padding: var(--s-4) var(--s-5);
+    background: var(--paper-soft);
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .vehicle-price-label {
+    font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+  }
+  .vehicle-price { font-size: 16px; font-weight: 900; color: var(--ink); }
+  .vehicle-cta {
+    color: var(--gavi-blue); font-weight: 700; font-size: 13px;
+    border-bottom: 1.5px solid var(--gavi-blue); padding-bottom: 2px;
+  }
+</style>

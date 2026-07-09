@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro'
+import BlogCard from '../../components/BlogCard.astro'
+import {sanityClient} from '../../lib/sanity.js'
+import {featuredPostQuery, recentPostsQuery} from '../../lib/queries.js'
+
+const [featured, recent] = await Promise.all([
+  sanityClient.fetch(featuredPostQuery),
+  sanityClient.fetch(recentPostsQuery),
+])
+---
+
+<Base
+  title="Blog — Notes on car ownership in Lagos | GAVI AFRICA LIMITED"
+  description="Notes from the workshop floor. Straight answers on servicing, spare parts, buying vehicles, and running fleets in Lagos."
+  activePage="blog"
+>
+  <section class="blog-hero">
+    <div class="container">
+      <nav class="breadcrumbs"><a href="/">Home</a><span class="crumb-sep">/</span>Blog</nav>
+      <span class="eyebrow">BLOG</span>
+      <h1>Notes from the workshop floor.</h1>
+      <p class="lede">
+        Straight answers on servicing, spare parts, and buying vehicles in Lagos. Written by the people who work on cars every day.
+      </p>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="blog-featured">
+      <div class="container">
+        <span class="eyebrow" style="margin-bottom: var(--s-5); display: block;">FEATURED POST</span>
+        <BlogCard post={featured} featured={true} />
+      </div>
+    </section>
+  )}
+
+  <section class="blog-grid-wrap">
+    <div class="container">
+      <span class="eyebrow" style="margin-bottom: var(--s-6); display: block;">RECENT POSTS</span>
+      {recent.length === 0 ? (
+        <p style="color: var(--ink-mute);">No posts yet — check back soon.</p>
+      ) : (
+        <div class="blog-grid">
+          {recent.map(post => <BlogCard post={post} />)}
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .blog-hero { background: var(--paper); padding: var(--s-16) 0 var(--s-10); }
+  .blog-hero h1 { font-size: 44px; margin-bottom: var(--s-4); max-width: 720px; }
+  @media (min-width: 760px) { .blog-hero h1 { font-size: 56px; } }
+  .blog-hero p.lede { font-size: 18px; color: var(--ink-mute); max-width: 640px; margin-bottom: var(--s-8); }
+  .blog-featured { padding: var(--s-8) 0 var(--s-12); border-bottom: 1px solid var(--line); margin-bottom: var(--s-12); }
+  .blog-grid-wrap { padding-bottom: var(--s-16); }
+  .blog-grid { display: grid; gap: var(--s-8); grid-template-columns: 1fr; }
+  @media (min-width: 540px)  { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

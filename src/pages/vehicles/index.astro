@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro'
+import VehicleCard from '../../components/VehicleCard.astro'
+import {sanityClient} from '../../lib/sanity.js'
+import {allVehiclesQuery} from '../../lib/queries.js'
+
+const vehicles = await sanityClient.fetch(allVehiclesQuery)
+const availableCount = vehicles.filter(v => v.status === 'available').length
+---
+
+<Base
+  title="New & Pre-Owned Vehicles for Sale in Lagos — GAVI AFRICA LIMITED"
+  description="Brand new and quality pre-owned vehicles in Abule-Egba, Lagos. 3-year warranty on new. Sourcing on request."
+  activePage="vehicles"
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs"><a href="/">Home</a><span class="crumb-sep">/</span>Vehicles</nav>
+      <span class="eyebrow">VEHICLE SALES</span>
+      <h1>New and pre-owned vehicles, ready for the road.</h1>
+      <p class="lede">
+        Brand new vehicles sourced and inspected. Quality pre-owned, verified by our team. Transparent pricing, full documentation, and a 3-year warranty on new vehicles.
+      </p>
+    </div>
+  </section>
+
+  <section id="vehicle-grid">
+    <div class="container">
+      {vehicles.length === 0 ? (
+        <p style="text-align:center; padding: var(--s-16) 0; color: var(--ink-mute);">
+          No vehicles in stock right now. <a href="/contact" class="text-link">Contact us</a> to source one.
+        </p>
+      ) : (
+        <>
+          <p class="results-count"><strong>{availableCount} vehicles</strong> available · <strong>{vehicles.length} total</strong> in inventory</p>
+          <div class="vehicle-grid">
+            {vehicles.map(v => <VehicleCard vehicle={v} />)}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .results-count { font-size: 14px; color: var(--ink-mute); margin-bottom: var(--s-6); }
+  .results-count strong { color: var(--ink); font-weight: 700; }
+  .vehicle-grid { display: grid; gap: var(--s-6); grid-template-columns: 1fr; }
+  @media (min-width: 540px)  { .vehicle-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .vehicle-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

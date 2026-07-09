@@ -1,0 +1,41 @@
+---
+import '../styles/global.css'
+import AnnouncementBar from '../components/AnnouncementBar.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import WhatsAppButton from '../components/WhatsAppButton.astro'
+
+const {
+  title = 'GAVI AFRICA LIMITED — Auto Sales, Service & Spare Parts in Lagos, Nigeria',
+  description = 'GAVI AFRICA LIMITED runs the auto experience centre for individuals, families, and fleets in Abule-Egba, Lagos. Brand-trained technicians, OEM parts, warranty that holds.',
+  activePage = '',
+} = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <AnnouncementBar />
+  <Header activePage={activePage} />
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</body>
+</html>

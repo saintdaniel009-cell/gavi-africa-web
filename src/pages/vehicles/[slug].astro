@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro'
+import {sanityClient, urlFor} from '../../lib/sanity.js'
+import {allVehicleSlugsQuery, vehicleBySlugQuery} from '../../lib/queries.js'
+
+// getStaticPaths — Astro asks Sanity for every vehicle slug at build time,
+// and prebuilds one static page per vehicle.
+export async function getStaticPaths() {
+  const slugs = await sanityClient.fetch(allVehicleSlugsQuery)
+  return slugs.map((slug) => ({params: {slug}}))
+}
+
+const {slug} = Astro.params
+const vehicle = await sanityClient.fetch(vehicleBySlugQuery, {slug})
+
+if (!vehicle) return Astro.redirect('/vehicles')
+
+const priceStr = new Intl.NumberFormat('en-NG').format(vehicle.price)
+const mileageStr = new Intl.NumberFormat('en-NG').format(vehicle.mileageKm)
+const heroImg = vehicle.photos?.[0] ? urlFor(vehicle.photos[0]).width(1600).height(1000).fit('crop').url() : null
+const thumbs = (vehicle.photos || []).slice(1).map(p => ({
+  url: urlFor(p).width(400).height(300).fit('crop').url(),
+  alt: p.alt || '',
+}))
+---
+
+<Base
+  title={`${vehicle.year} ${vehicle.make} ${vehicle.title} — GAVI AFRICA LIMITED`}
+  description={vehicle.description || `${vehicle.year} ${vehicle.make} ${vehicle.title} for sale at GAVI AFRICA, Abule-Egba, Lagos.`}
+  activePage="vehicles"
+>
+  <section class="page-hero" style="padding-bottom: var(--s-8);">
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="/">Home</a><span class="crumb-sep">/</span>
+        <a href="/vehicles">Vehicles</a><span class="crumb-sep">/</span>
+        {vehicle.year} {vehicle.make} {vehicle.title}
+      </nav>
+      <span class="eyebrow">{vehicle.condition === 'new' ? 'BRAND NEW' : 'PRE-OWNED'}{vehicle.status !== 'available' ? ` · ${vehicle.status.toUpperCase()}` : ''}</span>
+      <h1>{vehicle.year} {vehicle.make} {vehicle.title}</h1>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="container">
+      <div class="detail-grid">
+        <div>
+          {heroImg && <img src={heroImg} alt={vehicle.photos[0]?.alt || vehicle.title} class="hero-photo" />}
+          {thumbs.length > 0 && (
+            <div class="thumb-row">
+              {thumbs.map(t => <img src={t.url} alt={t.alt} class="thumb" loading="lazy" />)}
+            </div>
+          )}
+        </div>
+        <aside class="detail-sidebar">
+          <div class="price-block">
+            <div class="price-label">{vehicle.condition === 'new' ? 'From' : 'Asking'}</div>
+            <div class="price">₦{priceStr}</div>
+          </div>
+          <dl class="spec-list">
+            <div><dt>Make</dt><dd>{vehicle.make}</dd></div>
+            <div><dt>Year</dt><dd>{vehicle.year}</dd></div>
+            <div><dt>Body</dt><dd>{vehicle.bodyType}</dd></div>
+            <div><dt>Fuel</dt><dd>{vehicle.fuel}</dd></div>
+            {vehicle.drivetrain && <div><dt>Drivetrain</dt><dd>{vehicle.drivetrain}</dd></div>}
+            <div><dt>Mileage</dt><dd>{mileageStr} km</dd></div>
+            <div><dt>Condition</dt><dd>{vehicle.condition === 'new' ? 'Brand new' : 'Pre-owned'}</dd></div>
+          </dl>
+          {vehicle.features && vehicle.features.length > 0 && (
+            <div class="features-block">
+              <h4>Key features</h4>
+              <ul>{vehicle.features.map(f => <li>{f}</li>)}</ul>
+            </div>
+          )}
+          <div class="detail-cta">
+            <a href={`https://wa.me/2348079000009?text=${encodeURIComponent(`Hi GAVI AFRICA, I'm interested in the ${vehicle.year} ${vehicle.make} ${vehicle.title}.`)}`} class="btn btn-primary" style="width:100%;">WhatsApp to enquire →</a>
+            <a href="tel:+2347053009305" class="btn btn-outline" style="width:100%; margin-top: var(--s-3);">Call +234 705 300 9305</a>
+          </div>
+        </aside>
+      </div>
+      {vehicle.description && (
+        <div class="description-block">
+          <h3>About this vehicle</h3>
+          <p>{vehicle.description}</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .detail-grid { display: grid; gap: var(--s-8); grid-template-columns: 1fr; }
+  @media (min-width: 880px) { .detail-grid { grid-template-columns: 1.5fr 1fr; gap: var(--s-10); } }
+  .hero-photo { width: 100%; border-radius: 16px; aspect-ratio: 16/10; object-fit: cover; box-shadow: 0 16px 40px rgba(15, 26, 43, 0.12); }
+  .thumb-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); margin-top: var(--s-4); }
+  .thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+  .detail-sidebar {
+    background: var(--paper-soft); border: 1px solid var(--line); border-radius: 16px;
+    padding: var(--s-8); align-self: start; position: sticky; top: 100px;
+  }
+  .price-block { padding-bottom: var(--s-5); border-bottom: 1px solid var(--line); margin-bottom: var(--s-5); }
+  .price-label { font-size: 12px; color: var(--ink-mute); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+  .price { font-size: 32px; font-weight: 900; color: var(--ink); }
+  .spec-list { display: grid; gap: var(--s-3); margin-bottom: var(--s-5); }
+  .spec-list div { display: flex; justify-content: space-between; font-size: 14px; padding-bottom: var(--s-2); border-bottom: 1px solid var(--line); }
+  .spec-list dt { color: var(--ink-mute); font-weight: 500; }
+  .spec-list dd { color: var(--ink); font-weight: 700; }
+  .features-block { margin-bottom: var(--s-5); }
+  .features-block h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gavi-blue); margin-bottom: var(--s-3); }
+  .features-block ul { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .features-block li { font-size: 12px; padding: 4px 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; }
+  .description-block { margin-top: var(--s-12); max-width: 720px; }
+  .description-block h3 { font-size: 24px; margin-bottom: var(--s-4); }
+  .description-block p { font-size: 16px; color: var(--ink-soft); line-height: 1.7; white-space: pre-wrap; }
+</style>

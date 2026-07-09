@@ -1,0 +1,38 @@
+---
+// OEM partner marquee — auto-scrolling infinite loop of OEM brand names.
+// The list is duplicated in the markup so the CSS translateX(-50%) loop
+// hides the seam.
+---
+
+<div class="oem-marquee" aria-label="OEM partner brands scrolling">
+  <div class="oem-track">
+    <!-- First loop -->
+    <span class="oem-item oem-toyota">TOYOTA</span>
+    <span class="oem-item oem-denso">DENSO</span>
+    <span class="oem-item oem-aisin">AISIN</span>
+    <span class="oem-item oem-advics">ADVICS</span>
+    <span class="oem-item oem-bosch">
+      <svg class="bosch-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="#2E2E38" stroke-width="3" />
+        <path d="M20 4 A 16 16 0 0 1 36 20 L 20 20 Z" fill="#B71C1C" />
+        <path d="M20 36 A 16 16 0 0 1 4 20 L 20 20 Z" fill="#B71C1C" />
+        <rect x="4" y="18" width="32" height="4" fill="#2E2E38" />
+      </svg>
+      BOSCH
+    </span>
+    <!-- Duplicate loop for seamless scroll -->
+    <span class="oem-item oem-toyota">TOYOTA</span>
+    <span class="oem-item oem-denso">DENSO</span>
+    <span class="oem-item oem-aisin">AISIN</span>
+    <span class="oem-item oem-advics">ADVICS</span>
+    <span class="oem-item oem-bosch">
+      <svg class="bosch-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="#2E2E38" stroke-width="3" />
+        <path d="M20 4 A 16 16 0 0 1 36 20 L 20 20 Z" fill="#B71C1C" />
+        <path d="M20 36 A 16 16 0 0 1 4 20 L 20 20 Z" fill="#B71C1C" />
+        <rect x="4" y="18" width="32" height="4" fill="#2E2E38" />
+      </svg>
+      BOSCH
+    </span>
+  </div>
+</div>

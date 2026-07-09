@@ -1,11 +1,1421 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Base from '../layouts/Base.astro'
+import OemMarquee from '../components/OemMarquee.astro'
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Base activePage="">
+<!-- ============ SECTION C: Hero — NEW (duotone illustration, single CTA) ============ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1 class="hero-headline">
+            Trusted automotive <span class="blue-word">service</span>, sales, and spare parts in Lagos.
+          </h1>
+          <p class="hero-copy">
+            GAVI AFRICA LIMITED runs an auto experience centre for individuals, families, and any fleet in Lagos and Nigeria. Brand-trained technicians. OEM parts. Warranty that holds. One Centre.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#booking" class="btn btn-primary">Book a Service →</a>
+            <a href="/vehicles" class="text-link">or browse vehicles for sale</a>
+          </div>
+        </div>
+
+        <!-- DUOTONE HERO ILLUSTRATION
+             Stylized service-bay scene — car on lift, workshop lighting.
+             Built as SVG so it scales perfectly and renders in two brand tones.
+             Swap for a real duotone-treated photograph once available
+             (apply same #246EB6 + #0F1A2B duotone treatment).
+        -->
+        <div class="hero-carousel" data-carousel>
+          <div class="carousel-slides">
+            <figure class="carousel-slide is-active">
+              <img src="/images/facility-front.jpg" alt="GAVI AFRICA Auto Experience Centre — front view" loading="eager">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="/images/workshop-bay.jpg" alt="Workshop bay with vehicles in for service" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="/images/team-balcony.jpg" alt="The GAVI AFRICA technician team" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="/images/diagnostic-tablet.jpg" alt="Technician running vehicle diagnostics with tablet" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="/images/facility-aerial-angle.jpg" alt="Aerial view of the GAVI AFRICA compound" loading="lazy">
+            </figure>
+          </div>
+          <div class="carousel-controls" role="tablist" aria-label="Choose hero image">
+            <button type="button" class="carousel-dot is-active" data-idx="0" aria-label="Slide 1"></button>
+            <button type="button" class="carousel-dot" data-idx="1" aria-label="Slide 2"></button>
+            <button type="button" class="carousel-dot" data-idx="2" aria-label="Slide 3"></button>
+            <button type="button" class="carousel-dot" data-idx="3" aria-label="Slide 4"></button>
+            <button type="button" class="carousel-dot" data-idx="4" aria-label="Slide 5"></button>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Auto Experience Centre · Abule-Egba, Lagos
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION D: Trust strip — NEW (with explainer caption) ============ -->
+  <section class="trust-strip" aria-label="OEM partners">
+    <div class="container">
+      <div class="trust-label">Genuine Parts &amp; Trusted Automotive Partners</div>
+      <OemMarquee />
+      <p class="trust-caption">
+        Working with <strong>Toyota, Bosch, Denso, Aisin, Advics,</strong> and OEM manufacturers across the industry. Genuine parts, sourced across our supply network.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION E: Three Pillars — NEW (custom hex-framed illustrations) ============ -->
+  <section>
+    <div class="container">
+      <div class="center" style="margin-bottom: var(--s-10);">
+        <span class="eyebrow">Three Pillars · One Centre</span>
+        <h2 class="section-title">Sales. Service. <span class="blue-word">Spare Parts.</span></h2>
+        <p class="section-lede">Everything we do at our Auto Experience Centre in Abule-Egba, Lagos sits inside one of these three pillars.</p>
+      </div>
+      <div class="pillars-grid">
+
+        <!-- Pillar 1: Vehicle Sales -->
+        <div class="pillar-card">
+          <div class="pillar-illustration" aria-hidden="true"><img src="/images/pillar-vehicles.png" alt="Vehicle Sales icon" class="pillar-icon-img"></div>
+          <h3>Vehicle Sales</h3>
+          <ul>
+            <li>Brand new vehicles, sourced and inspected</li>
+            <li>Quality pre-owned, verified by our team</li>
+            <li>Transparent pricing &amp; full documentation</li>
+            <li>3-year / 100,000 km warranty on new vehicles</li>
+          </ul>
+          <a href="/vehicles" class="btn btn-ghost">Explore vehicles →</a>
+        </div>
+
+        <!-- Pillar 2: After-Sales Service -->
+        <div class="pillar-card">
+          <div class="pillar-illustration" aria-hidden="true"><img src="/images/pillar-service.png" alt="After-Sales Service icon" class="pillar-icon-img"></div>
+          <h3>After-Sales Service</h3>
+          <ul>
+            <li>Routine maintenance &amp; periodic servicing</li>
+            <li>Diagnostics, running repairs &amp; warranty work</li>
+            <li>Body &amp; paint, with show-room finish</li>
+            <li>Mobile workshop for fleets (min. 3 vehicles)</li>
+          </ul>
+          <a href="/services" class="btn btn-ghost">View services →</a>
+        </div>
+
+        <!-- Pillar 3: Genuine Spare Parts -->
+        <div class="pillar-card">
+          <div class="pillar-illustration" aria-hidden="true"><img src="/images/pillar-parts.png" alt="Genuine Spare Parts icon" class="pillar-icon-img"></div>
+          <h3>Genuine Spare Parts</h3>
+          <ul>
+            <li>Multi-brand OEM components, not Toyota-only</li>
+            <li>Toyota, Bosch, Denso, Aisin, Advics &amp; more</li>
+            <li>Supply for walk-in, fleet &amp; workshop accounts</li>
+            <li>Sourced beyond our flagship partnerships</li>
+          </ul>
+          <a href="parts.html" class="btn btn-ghost">Request parts →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION F: Testimonials — NEW (3 strongest + Google link) ============ -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="center" style="margin-bottom: var(--s-10);">
+        <span class="eyebrow">In Their Words</span>
+        <h2 class="section-title">What our customers are saying.</h2>
+      </div>
+      <div class="testimonials-grid">
+
+        <!-- Testimonial 1: Emotional/specific (parents' car) -->
+        <div class="testimonial">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-quote">"Thanks for your team's expertise in fixing my parents' car. My Dad had good feedback from the work. God bless you."</p>
+          <span class="testimonial-tag">Family vehicle · repair</span>
+          <div class="testimonial-author">
+            <div class="avatar">L</div>
+            <div><div class="author-name">Laughter</div><div class="author-context">Verified customer</div></div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2: Referral signal (business value) -->
+        <div class="testimonial">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-quote">"Good morning, well done. My friend is very impressed with the quality of your work and she is a sure gateway to more referrals."</p>
+          <span class="testimonial-tag">Word-of-mouth referral</span>
+          <div class="testimonial-author">
+            <div class="avatar">A</div>
+            <div><div class="author-name">Ayokanmi</div><div class="author-context">Verified customer</div></div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3: Concrete outcome (diagnostic resolved) -->
+        <div class="testimonial">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-quote">"The car is not doing hard starting again. Thank you."</p>
+          <span class="testimonial-tag">Diagnostic &amp; repair</span>
+          <div class="testimonial-author">
+            <div class="avatar">A</div>
+            <div><div class="author-name">Azeez</div><div class="author-context">Verified customer</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="reviews-footer">
+        <p class="reviews-footer-text">More stories from people we've served.</p>
+        <a href="#" class="btn btn-outline">Read more reviews on Google →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION G: Booking — NEW (integrated 4-step process + specialty chips) ============ -->
+  <section id="booking" class="booking">
+    <div class="container">
+
+      <!-- Integrated 4-step process (replaces standalone How-It-Works section) -->
+      <div class="process-row" aria-label="How booking works">
+        <div class="process-step">
+          <span class="process-step-num" aria-hidden="true">1</span>
+          <div>
+            <h4>Book</h4>
+            <p>Fill the form, call, or WhatsApp us.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step-num" aria-hidden="true">2</span>
+          <div>
+            <h4>Diagnose</h4>
+            <p>We inspect. You see the quote first.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step-num" aria-hidden="true">3</span>
+          <div>
+            <h4>Service</h4>
+            <p>Brand-trained techs. OEM parts.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step-num" aria-hidden="true">4</span>
+          <div>
+            <h4>Drive away</h4>
+            <p>Quality check. Keys back. Done.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-grid">
+
+        <div class="booking-copy">
+          <span class="eyebrow">Book a Service</span>
+          <h2>Tell us what's wrong. We'll handle the rest.</h2>
+          <p>Fill the form and we'll call you back. Want to speak to someone now? Ring the Service Advisor. They're at the desk during work hours.</p>
+
+          <div class="booking-call">
+            <span class="booking-call-label">Service Advisor / Customer Support</span>
+            <a href="tel:+2347053009305" class="booking-call-number">+234 705 300 9305</a>
+            <span style="font-size: 13px; color: var(--ink-mute);">Calls, SMS, WhatsApp · Mon–Fri 8AM–5PM, Sat 8AM–2PM</span>
+          </div>
+
+          <!-- Specialty service chips (replaces dark VAS section) -->
+          <div class="specialty-chips-label">Specialty drop-off options</div>
+          <div class="specialty-chips">
+            <span class="specialty-chip"><span class="specialty-chip-code">EBS</span> Early Bird · from 6:30 AM</span>
+            <span class="specialty-chip"><span class="specialty-chip-code">ONS</span> Overnight</span>
+            <span class="specialty-chip"><span class="specialty-chip-code">WES</span> Weekend (Sat)</span>
+            <span class="specialty-chip"><span class="specialty-chip-code">MWS</span> Mobile Workshop · fleet 3+</span>
+            <span class="specialty-chip"><span class="specialty-chip-code">ERS</span> Emergency Recovery</span>
+          </div>
+          <p class="specialty-chip-tc">
+            T&amp;Cs apply to all off-hours and mobile services. Select your preference in the drop-off section of the form.
+          </p>
+        </div>
+
+        <form class="booking-form" id="booking-form" aria-label="Service booking form">
+          <div class="field-row">
+            <div class="field">
+              <label for="bf-first">First name *</label>
+              <input id="bf-first" name="first" type="text" required>
+            </div>
+            <div class="field">
+              <label for="bf-last">Last name *</label>
+              <input id="bf-last" name="last" type="text" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="bf-phone">Phone number *</label>
+              <input id="bf-phone" name="phone" type="tel" placeholder="+234..." required>
+            </div>
+            <div class="field">
+              <label for="bf-email">Email address *</label>
+              <input id="bf-email" name="email" type="email" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="bf-brand">Vehicle brand *</label>
+              <input id="bf-brand" name="brand" type="text" placeholder="e.g. Toyota" required>
+            </div>
+            <div class="field">
+              <label for="bf-model">Model &amp; year *</label>
+              <input id="bf-model" name="model" type="text" placeholder="e.g. Camry 2019" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="bf-vin">VIN / Chassis number <span class="hint">(optional but recommended)</span></label>
+            <input id="bf-vin" name="vin" type="text" placeholder="Helps us prepare the right parts before you arrive.">
+          </div>
+          <div class="field">
+            <label for="bf-service">Service required *</label>
+            <select id="bf-service" name="service" required>
+              <option value="">Select a service</option>
+              <option>Quick service: every 5,000 km routine (QS)</option>
+              <option>Free first service: 1,000 km, new vehicles (FS)</option>
+              <option>Periodic maintenance (PMS)</option>
+              <option>Annual maintenance (AMS)</option>
+              <option>Preventive service</option>
+              <option>Diagnostic service (DS)</option>
+              <option>Running repair (RR)</option>
+              <option>Body &amp; paint repair (BPR)</option>
+              <option>Warranty repair (WR)</option>
+              <option>Emergency recovery (ERS)</option>
+              <option>Mobile workshop service: fleet 3+ (MWS)</option>
+              <option>Overnight service (ONS)</option>
+              <option>Weekend service (WES)</option>
+              <option>After-market installation (AM)</option>
+              <option>Spare parts enquiry</option>
+              <option>Vehicle sales enquiry</option>
+              <option>Other / not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-issue">Describe the issue <span class="hint">(optional)</span></label>
+            <textarea id="bf-issue" name="issue" placeholder="Noises, warning lights, fluid leaks, mileage, etc."></textarea>
+          </div>
+          <div class="field">
+            <label>Drop-off preference</label>
+            <div class="radio-group">
+              <label class="radio-option"><input type="radio" name="dropoff" value="standard" checked> Standard drop-off</label>
+              <label class="radio-option"><input type="radio" name="dropoff" value="earlybird"> Early Bird (from 6:30 AM)</label>
+              <label class="radio-option"><input type="radio" name="dropoff" value="saturday"> Saturday morning</label>
+              <label class="radio-option"><input type="radio" name="dropoff" value="mobile"> Mobile or Recovery</label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Request Diagnosis →</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION H: Trusted By (corporate clients) ============ -->
+  <section class="trusted-by">
+    <div class="container">
+      <div class="center" style="margin-bottom: var(--s-10);">
+        <span class="eyebrow">Trusted By</span>
+        <h2 class="section-title">Brands &amp; institutions that <span class="blue-word">trust us</span>.</h2>
+        <p class="section-lede">Financial institutions, schools, and faith organisations across Nigeria run their vehicles on our service.</p>
+      </div>
+      <div class="clients-grid">
+        <div class="client"><div class="client-name">AMCON</div><div class="client-sector featured">Federal Agency</div></div>
+        <div class="client"><div class="client-name">BSN (Bible Society of Nigeria)</div><div class="client-sector">Faith / NGO</div></div>
+        <div class="client"><div class="client-name">First Standard Insurance Brokers</div><div class="client-sector featured">Financial Services</div></div>
+        <div class="client"><div class="client-name">Precise Financial Services</div><div class="client-sector featured">Financial Services</div></div>
+        <div class="client"><div class="client-name">Valmon Securities</div><div class="client-sector featured">Financial Services</div></div>
+        <div class="client"><div class="client-name">Edgenet Consulting</div><div class="client-sector">Consulting</div></div>
+        <div class="client"><div class="client-name">Corona Secondary School, Agbara</div><div class="client-sector">Education</div></div>
+        <div class="client"><div class="client-name">Solomon Grace Schools</div><div class="client-sector">Education</div></div>
+        <div class="client"><div class="client-name">Dimeji International School</div><div class="client-sector">Education</div></div>
+        <div class="client"><div class="client-name">Inspired Christian Learning Center</div><div class="client-sector">Education</div></div>
+        <div class="client"><div class="client-name">CAC Kingdom Power Assembly</div><div class="client-sector">Faith / NGO</div></div>
+        <div class="client"><div class="client-name">&amp; many more</div><div class="client-sector featured">Across Nigeria</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION I: Workshop Gallery — NEW in v3 (photo slots for client) ============ -->
+  <section class="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <div>
+          <span class="eyebrow">Inside the Centre</span>
+          <h2 class="section-title">The facility, the floor, the team.</h2>
+        </div>
+        <p style="font-size: 15px; color: var(--ink-mute); max-width: 360px;">
+          What you'll see when you walk through the gate. The bays, the diagnostics, the people working on your car, and the tools they work with.
+        </p>
+      </div>
+
+      <!--
+        ====================================================================
+        PHOTO SLOT INSTRUCTIONS (for Saint)
+        ====================================================================
+        Each tile below shows a labelled placeholder with the dimensions
+        and filename for the real photo. To swap in a real photo:
+
+          1. Drop the image into /images/ at the spec'd dimensions.
+          2. Replace the <div class="gallery-placeholder">…</div> with:
+             <img src="/images/showroom-main.jpg" alt="GAVI AFRICA showroom" />
+          3. The img will auto-cover the tile (object-fit: cover).
+
+        Slot 1 (hero, wide):  showroom-main.jpg   3:2  · 1800×1200 min
+        Slot 2:               workshop-floor.jpg  4:3  · 1200×900  min
+        Slot 3:               diagnostics.jpg     4:3  · 1200×900  min
+        Slot 4:               parts-counter.jpg   4:3  · 1200×900  min
+        Slot 5:               quality-check.jpg   4:3  · 1200×900  min
+        ====================================================================
+      -->
+
+      <div class="gallery-grid">
+
+        <div class="gallery-tile">
+          <!-- PHOTO SLOT 1 (HERO): replace with <img src="/images/showroom-main.jpg" alt="GAVI AFRICA showroom" /> -->
+          <img src="/images/facility-front.jpg" alt="GAVI AFRICA Auto Experience Centre exterior" loading="lazy">
+        </div>
+
+        <div class="gallery-tile">
+          <!-- PHOTO SLOT 2: replace with <img src="/images/workshop-floor.jpg" alt="Workshop floor with service lifts" /> -->
+          <img src="/images/workshop-bay.jpg" alt="Workshop bay with vehicles in service" loading="lazy">
+        </div>
+
+        <div class="gallery-tile">
+          <!-- PHOTO SLOT 3: replace with <img src="/images/diagnostics.jpg" alt="Diagnostic bay" /> -->
+          <img src="/images/diagnostic-tablet.jpg" alt="Technician running vehicle diagnostics" loading="lazy">
+        </div>
+
+        <div class="gallery-tile">
+          <!-- PHOTO SLOT 4: replace with <img src="/images/parts-counter.jpg" alt="Parts counter" /> -->
+          <img src="/images/team-balcony.jpg" alt="GAVI AFRICA technician team" loading="lazy">
+        </div>
+
+        <div class="gallery-tile">
+          <!-- PHOTO SLOT 5: replace with <img src="/images/quality-check.jpg" alt="Final quality check" /> -->
+          <img src="/images/tools-toolbox.jpg" alt="Workshop toolbox and tooling" loading="lazy">
+        </div>
+
+      </div>
+
+      <!-- Instagram follow CTA -->
+      <div class="gallery-instagram">
+        <div class="gallery-instagram-text">
+          <div class="gallery-instagram-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 0 0-2.13 1.38A5.86 5.86 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.73 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.13-1.38 5.86 5.86 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.13A5.86 5.86 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+          </div>
+          <div class="gallery-instagram-copy">
+            <h4>See more on Instagram</h4>
+            <p>Live updates from the floor: new builds, workshop wins, fleet visits.</p>
+          </div>
+        </div>
+        <a href="https://instagram.com/gaviafricaltd" class="btn btn-outline">Follow @gaviafricaltd →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SECTION J: Location CTA — NEW (branded map placeholder) ============ -->
+  <section class="location">
+    <div class="container">
+      <div class="location-grid">
+        <div>
+          <span class="eyebrow">Find Us</span>
+          <h2 class="section-title">The GAVI AFRICA Auto Experience Centre.</h2>
+          <p class="location-address">
+            3, Abiodun Onitiri Avenue,<br>
+            Awori Bus-Stop, Abule-Egba,<br>
+            Lagos, Nigeria
+          </p>
+          <p class="location-hours">
+            <strong>Mon–Fri:</strong> 8:00 AM – 5:00 PM<br>
+            <strong>Saturday:</strong> 8:00 AM – 2:00 PM<br>
+            <strong>Sunday:</strong> Closed<br>
+            <em>Early Bird from 6:30 AM by booking — T&amp;Cs apply.</em>
+          </p>
+          <div class="location-ctas">
+            <a href="https://maps.google.com" class="btn btn-primary">Get Directions →</a>
+            <a href="tel:+2347053009305" class="btn btn-outline">Call +234 705 300 9305</a>
+          </div>
+        </div>
+
+        <!-- BRANDED MAP PLACEHOLDER
+             Swap with Google Maps Static API image styled to match brand,
+             or embed iframe with custom styling that matches the dark/blue tones.
+             For now this is an SVG stylized map view.
+        -->
+        <div class="map-frame">
+          <a
+            href="https://maps.app.goo.gl/vGPRSB1B4hJGyYT18"
+            target="_blank"
+            rel="noopener"
+            class="map-directions-overlay"
+            aria-label="Open GAVI AFRICA location in Google Maps for directions"
+          >
+            <span class="map-directions-btn">Get directions →</span>
+          </a>
+          <iframe
+            src="https://www.google.com/maps?q=6.6209108,3.3010742&hl=en&z=16&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="GAVI AFRICA Auto Experience Centre location"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION J: FAQ ============ -->
+  <section class="faq">
+    <div class="container">
+      <div class="center" style="margin-bottom: var(--s-10);">
+        <span class="eyebrow">Questions</span>
+        <h2 class="section-title">Frequently asked.</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>I bought my vehicle elsewhere — can you still service it?</summary>
+          <div class="faq-answer">Yes. We service all vehicles regardless of where they were purchased.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you offer any warranty on repairs?</summary>
+          <div class="faq-answer">Yes — 3-year / 100,000 km / 62,137 miles warranty on covered repairs for brand new vehicles purchased from us.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I drop my vehicle off early before work?</summary>
+          <div class="faq-answer">Yes — the Early Bird Service starts at 6:30 AM. T&amp;Cs apply.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Are your parts genuine?</summary>
+          <div class="faq-answer">Yes. Toyota Genuine Parts plus authorised Bosch, Denso, Aisin, and Advics components — and other genuine OEM components beyond these flagship partnerships.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can you come to my office or yard for a fleet service?</summary>
+          <div class="faq-answer">Yes — Mobile Workshop Service for fleets of 3 or more vehicles. T&amp;Cs apply.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How does the Mobile Workshop service work?</summary>
+          <div class="faq-answer">Our Mobile Van and technicians visit at a pre-arranged time with a minimum of 3 vehicles. Share your vehicle brand, model, and VIN/chassis number when booking so we arrive with the right parts.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Booking form → Google Sheets via Apps Script web app.
+  // Paste your deployed Apps Script /exec URL below.
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyVAHfEYIeovFoGIQMpPlS6XnUi_1mVH_KVHZbgrsAA4e3ItzXxAtl86xIL3DUvT0KC/exec'
+
+  const bookingForm = document.getElementById('booking-form')
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const btn = bookingForm.querySelector('button[type="submit"]')
+      const original = btn.textContent
+      btn.textContent = 'Sending…'
+      btn.disabled = true
+      try {
+        const data = Object.fromEntries(new FormData(bookingForm).entries())
+        data.submittedAt = new Date().toISOString()
+        data.page = location.pathname
+        await fetch(SHEET_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script doesn't return CORS headers; fire-and-forget
+          headers: {'Content-Type': 'text/plain;charset=utf-8'},
+          body: JSON.stringify(data),
+        })
+        btn.textContent = 'Request received ✓'
+        bookingForm.reset()
+        setTimeout(() => { btn.textContent = original; btn.disabled = false }, 4000)
+      } catch (err) {
+        btn.textContent = 'Something went wrong — call us instead'
+        setTimeout(() => { btn.textContent = original; btn.disabled = false }, 4000)
+      }
+    })
+  }
+</script>
+
+<script>
+  // Hero carousel autoplay
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const slides = Array.from(root.querySelectorAll('.carousel-slide'))
+    const dots   = Array.from(root.querySelectorAll('.carousel-dot'))
+    if (slides.length < 2) return
+    let current = 0
+    let interval = null
+    const goTo = (idx) => {
+      slides[current].classList.remove('is-active')
+      dots[current]?.classList.remove('is-active')
+      current = (idx + slides.length) % slides.length
+      slides[current].classList.add('is-active')
+      dots[current]?.classList.add('is-active')
+    }
+    const next  = () => goTo(current + 1)
+    const start = () => (interval = setInterval(next, 5000))
+    const stop  = () => interval && clearInterval(interval)
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { stop(); goTo(i); start() }))
+    root.addEventListener('mouseenter', stop)
+    root.addEventListener('mouseleave', start)
+    start()
+  })
+</script>
+
+<style>
+/* =====================================================================
+     SECTION A — Announcement bar
+     ===================================================================== */
+  .announce {
+    background: var(--ink);
+    color: #D8E0EC;
+    font-size: 13px;
+    padding: var(--s-3) 0;
+  }
+  .announce .container {
+    display: flex; flex-direction: column; align-items: center;
+    gap: var(--s-3); text-align: center;
+  }
+  @media (min-width: 880px) {
+    .announce .container { flex-direction: row; justify-content: space-between; text-align: left; }
+  }
+  .announce-message { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: var(--s-3); }
+  .pill {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    background: var(--gavi-blue); color: #fff; font-weight: 700; font-size: 12px;
+    padding: 4px 12px; border-radius: 999px;
+  }
+  .pulse-dot {
+    width: 8px; height: 8px; background: #4ADE80; border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.3); }
+  }
+  .announce-link { color: #fff; font-weight: 600; text-decoration: underline; }
+  .social-row { display: flex; gap: var(--s-4); align-items: center; }
+  .social-icon { width: 18px; height: 18px; color: #D8E0EC; transition: color 0.15s ease; }
+  .social-icon:hover { color: #fff; }
+  .social-icon.disabled { color: #6B7A8F; cursor: not-allowed; }
+
+  /* =====================================================================
+     SECTION B — Header / nav
+     ===================================================================== */
+  .header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .header .container {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: var(--s-4); padding-bottom: var(--s-4); gap: var(--s-4);
+  }
+  .logo { display: flex; align-items: center; gap: var(--s-2); height: 34px; }
+  @media (min-width: 880px) { .logo { height: 42px; } }
+  .logo-hex {
+    width: 34px; height: 34px; background: var(--gavi-blue);
+    -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 900; font-size: 16px;
+  }
+  @media (min-width: 880px) { .logo-hex { width: 42px; height: 42px; font-size: 20px; } }
+  .logo-text { font-weight: 900; font-size: 16px; color: var(--gavi-blue); letter-spacing: 0.02em; }
+  @media (min-width: 880px) { .logo-text { font-size: 18px; } }
+  /* NEW: real logo image */
+  .logo { display: flex; align-items: center; height: 40px; gap: 0; }
+  @media (min-width: 880px) { .logo { height: 48px; } }
+  .logo-img {
+    height: 100%; width: auto; display: block;
+  }
+  /* Footer variant — render the same file in white on dark background */
+  .logo.logo-on-dark .logo-img {
+    filter: brightness(0) invert(1);
+  }
+
+
+  .nav-links { display: none; gap: var(--s-8); list-style: none; }
+  @media (min-width: 880px) { .nav-links { display: flex; } }
+  .nav-links a { font-size: 15px; font-weight: 600; color: var(--ink-soft); transition: color 0.15s ease; }
+  .nav-links a:hover { color: var(--gavi-blue); }
+  .header-cta { display: none; }
+  @media (min-width: 880px) { .header-cta { display: inline-flex; } }
+
+  .hamburger {
+    display: flex; flex-direction: column; gap: 5px; padding: var(--s-2);
+    width: 44px; height: 44px; align-items: center; justify-content: center;
+  }
+  @media (min-width: 880px) { .hamburger { display: none; } }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); }
+
+  /* =====================================================================
+     SECTION C — Hero (NEW: duotone illustration, single CTA)
+     ===================================================================== */
+  .hero {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+    padding: var(--s-12) 0 var(--s-16);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 1024px) { .hero { padding: var(--s-20) 0; } }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--s-12);
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .hero-grid { grid-template-columns: 1.05fr 1fr; gap: var(--s-16); }
+  }
+  .hero-headline {
+    font-size: 34px;
+    line-height: 1.05;
+    margin-bottom: var(--s-5);
+  }
+  @media (min-width: 540px)  { .hero-headline { font-size: 42px; } }
+  @media (min-width: 760px)  { .hero-headline { font-size: 52px; } }
+  @media (min-width: 1024px) { .hero-headline { font-size: 60px; } }
+  .hero-copy {
+    font-size: 16px;
+    color: var(--ink-mute);
+    margin-bottom: var(--s-8);
+    max-width: 520px;
+  }
+  @media (min-width: 760px) { .hero-copy { font-size: 18px; } }
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--s-6);
+    flex-wrap: wrap;
+  }
+
+  /* Hero duotone illustration container */
+  .hero-illustration {
+    position: relative;
+    aspect-ratio: 5 / 4;
+    background: var(--ink);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15, 26, 43, 0.18);
+  }
+  .hero-illustration svg { width: 100%; height: 100%; display: block; }
+
+  /* Hero photo carousel (replaces the SVG illustration) */
+  .hero-carousel {
+    position: relative;
+    aspect-ratio: 5 / 4;
+    background: var(--ink);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15, 26, 43, 0.18);
+  }
+  .carousel-slides {
+    position: absolute; inset: 0;
+  }
+  .carousel-slide {
+    position: absolute; inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+  }
+  .carousel-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .carousel-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Bottom vignette for badge legibility */
+  .hero-carousel::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(15,26,43,0.65), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Dot controls */
+  .carousel-controls {
+    position: absolute;
+    bottom: var(--s-4);
+    right: var(--s-5);
+    display: flex; gap: var(--s-2);
+    z-index: 3;
+  }
+  .carousel-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease, width 0.2s ease;
+  }
+  .carousel-dot:hover { background: rgba(255,255,255,0.8); }
+  .carousel-dot.is-active {
+    background: #fff;
+    width: 24px;
+    border-radius: 4px;
+  }
+  /* Hero badge sits above the vignette */
+  .hero-badge { z-index: 2; }
+
+  /* OEM marquee — replaces the static logo row */
+  .oem-marquee {
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+  .oem-track {
+    display: flex;
+    gap: var(--s-12);
+    align-items: center;
+    width: max-content;
+    animation: oem-scroll 32s linear infinite;
+    padding: var(--s-3) 0;
+  }
+  .oem-marquee:hover .oem-track { animation-play-state: paused; }
+  @keyframes oem-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .oem-item {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .oem-item.oem-toyota  { color: #CC0000; font-style: italic; }
+  .oem-item.oem-denso   { color: #003DA6; }
+  .oem-item.oem-aisin   { color: #003A70; }
+  .oem-item.oem-advics  { color: #C8102E; }
+  .oem-item.oem-bosch   { color: #B71C1C; letter-spacing: 0.04em; }
+  /* Bosch anchor mark — grey/dark circle with red interior, per real Bosch branding */
+  .bosch-mark {
+    width: 26px; height: 26px;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  /* Subtle blue glow overlay */
+  .hero-illustration::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(36, 110, 182, 0.25), transparent 60%);
+    pointer-events: none;
+  }
+  /* Floating badge on illustration */
+  .hero-badge {
+    position: absolute;
+    bottom: var(--s-5);
+    left: var(--s-5);
+    background: rgba(15, 26, 43, 0.85);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: var(--s-3) var(--s-4);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    z-index: 2;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; background: var(--gavi-blue); border-radius: 50%;
+  }
+
+  /* =====================================================================
+     SECTION D — Trust strip (NEW: with explainer caption)
+     ===================================================================== */
+  .trust-strip {
+    background: var(--paper-soft);
+    padding: var(--s-10) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .trust-strip .container { text-align: center; }
+  .trust-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-mute);
+    margin-bottom: var(--s-6);
+  }
+  .oem-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s-8);
+    margin-bottom: var(--s-5);
+  }
+  .oem { font-weight: 900; font-size: 20px; letter-spacing: 0.02em; opacity: 0.85; transition: opacity 0.15s ease; }
+  .oem:hover { opacity: 1; }
+  @media (min-width: 760px) { .oem { font-size: 24px; } }
+  .oem-toyota { color: var(--toyota-red); font-style: italic; }
+  .oem-denso  { color: var(--denso-blue); }
+  .oem-aisin  { color: var(--aisin-navy); }
+  .oem-advics { color: var(--advics-red); }
+  .oem-bosch  { color: var(--bosch-red); }
+  .trust-caption {
+    font-size: 13px;
+    color: var(--ink-mute);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .trust-caption strong { color: var(--ink-soft); font-weight: 700; }
+
+  /* =====================================================================
+     SECTION E — Three Pillars (NEW: custom hex-framed illustrations)
+     ===================================================================== */
+  .pillars-grid {
+    display: grid;
+    gap: var(--s-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px)  { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .pillars-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .pillar-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: var(--s-8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(15, 26, 43, 0.08);
+    border-color: var(--gavi-blue);
+  }
+  /* Hexagonal illustration frame */
+  .pillar-illustration {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--s-6);
+    position: relative;
+  }
+  .pillar-icon-img {
+    height: 100%; width: auto; display: block;
+  }
+  .pillar-illustration svg { width: 64px; height: 64px; }
+
+  .pillar-card h3 { font-size: 24px; margin-bottom: var(--s-4); }
+  .pillar-card ul { list-style: none; margin-bottom: var(--s-6); flex-grow: 1; }
+  .pillar-card li {
+    font-size: 14px;
+    color: var(--ink-mute);
+    padding: var(--s-2) 0;
+    padding-left: var(--s-5);
+    position: relative;
+  }
+  .pillar-card li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 6px; height: 6px; background: var(--gavi-blue); border-radius: 50%;
+  }
+
+  /* =====================================================================
+     SECTION F — Testimonials (NEW: 3 cards + Google link)
+     ===================================================================== */
+  .testimonials { background: var(--paper-soft); }
+  .testimonials-grid {
+    display: grid;
+    gap: var(--s-5);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--s-8);
+  }
+  @media (min-width: 760px)  { .testimonials-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .testimonial {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: var(--s-6);
+    display: flex; flex-direction: column; gap: var(--s-4);
+    position: relative;
+  }
+  /* Decorative quote mark */
+  .testimonial::before {
+    content: '"';
+    position: absolute;
+    top: 4px;
+    right: 16px;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--gavi-blue);
+    opacity: 0.12;
+    font-family: Georgia, serif;
+    font-weight: 700;
+  }
+  .stars { color: #F5B400; font-size: 14px; letter-spacing: 2px; }
+  .testimonial-quote { font-size: 15px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
+  .testimonial-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gavi-blue);
+    background: var(--gavi-blue-tint);
+    padding: 4px 10px;
+    border-radius: 4px;
+    align-self: flex-start;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: var(--s-3); }
+  .avatar {
+    width: 40px; height: 40px;
+    background: var(--gavi-blue-tint); color: var(--gavi-blue);
+    -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+  }
+  .author-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .author-context { font-size: 12px; color: var(--ink-mute); }
+  .reviews-footer { text-align: center; }
+  .reviews-footer-text { font-size: 14px; color: var(--ink-mute); margin-bottom: var(--s-3); }
+
+  /* =====================================================================
+     SECTION G — Booking + integrated 4-step process
+     ===================================================================== */
+  .booking {
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Hex pattern background */
+  .booking::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -10%;
+    width: 50%;
+    height: 100%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 70'><polygon points='30,0 60,17.5 60,52.5 30,70 0,52.5 0,17.5' fill='none' stroke='%23246EB6' stroke-width='1' opacity='0.4'/></svg>");
+    background-size: 80px 92px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  .booking > .container { position: relative; z-index: 1; }
+
+  /* Process row (folded from old How-It-Works section) */
+  .process-row {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--s-12);
+    padding: var(--s-6);
+    background: var(--paper-soft);
+    border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+  @media (min-width: 540px)  { .process-row { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .process-row { grid-template-columns: repeat(4, 1fr); gap: var(--s-5); } }
+
+  .process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-3);
+  }
+  .process-step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 32px;
+    background: var(--gavi-blue);
+    color: #fff;
+    -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 12px;
+  }
+  .process-step h4 { font-size: 14px; margin-bottom: 2px; line-height: 1.2; }
+  .process-step p { font-size: 12px; color: var(--ink-mute); line-height: 1.4; }
+
+  .booking-grid {
+    display: grid;
+    gap: var(--s-10);
+  }
+  @media (min-width: 1024px) {
+    .booking-grid { grid-template-columns: 1fr 1.1fr; gap: var(--s-16); }
+  }
+  .booking-copy h2 { font-size: 32px; margin-bottom: var(--s-4); }
+  @media (min-width: 760px) { .booking-copy h2 { font-size: 40px; } }
+  .booking-copy p {
+    font-size: 16px;
+    color: var(--ink-mute);
+    margin-bottom: var(--s-6);
+  }
+  .booking-call {
+    background: var(--gavi-blue-tint);
+    border: 1px solid var(--gavi-blue);
+    border-radius: 12px;
+    padding: var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    margin-bottom: var(--s-6);
+  }
+  .booking-call-label {
+    font-size: 12px; font-weight: 700; color: var(--gavi-blue);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .booking-call-number {
+    font-size: 22px; font-weight: 900; color: var(--ink);
+  }
+  @media (min-width: 760px) { .booking-call-number { font-size: 26px; } }
+
+  /* Specialty chips (replaces VAS dark band) */
+  .specialty-chips-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-mute);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: var(--s-3);
+  }
+  .specialty-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+  .specialty-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .specialty-chip-code {
+    font-size: 10px;
+    font-weight: 900;
+    color: var(--gavi-blue);
+    letter-spacing: 0.06em;
+  }
+  .specialty-chip-tc {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: var(--s-3);
+    line-height: 1.5;
+  }
+
+  .booking-form {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: var(--s-6);
+    box-shadow: 0 12px 32px rgba(15, 26, 43, 0.04);
+  }
+  @media (min-width: 760px) { .booking-form { padding: var(--s-10); } }
+  .field { margin-bottom: var(--s-4); }
+  .field label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--ink-soft); margin-bottom: 6px;
+  }
+  .field .hint { font-weight: 400; color: var(--ink-mute); margin-left: 4px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 14px; font-size: 15px; font-family: inherit;
+    border: 1.5px solid var(--line); border-radius: 8px;
+    background: var(--paper); color: var(--ink);
+    transition: border-color 0.15s ease; min-height: 48px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--gavi-blue);
+  }
+  .field textarea { min-height: 100px; resize: vertical; }
+  .field-row {
+    display: grid; gap: var(--s-4); grid-template-columns: 1fr;
+  }
+  @media (min-width: 540px) { .field-row { grid-template-columns: 1fr 1fr; } }
+  .radio-group { display: grid; gap: var(--s-2); }
+  .radio-option {
+    display: flex; align-items: center; gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    border: 1.5px solid var(--line); border-radius: 8px;
+    cursor: pointer; font-size: 14px;
+    transition: border-color 0.15s ease;
+    min-height: 44px;
+  }
+  .radio-option:hover { border-color: var(--gavi-blue); }
+  .radio-option input { width: 18px; height: 18px; accent-color: var(--gavi-blue); }
+
+  /* =====================================================================
+     SECTION H — Trusted By (corporate clients)
+     ===================================================================== */
+  .trusted-by { background: var(--paper-soft); }
+  .clients-grid {
+    display: grid; gap: var(--s-3); grid-template-columns: 1fr;
+  }
+  @media (min-width: 540px) { .clients-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 880px) { .clients-grid { grid-template-columns: repeat(4, 1fr); } }
+  .client {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: var(--s-5);
+    min-height: 100px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .client-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: var(--s-1); line-height: 1.3; }
+  .client-sector { font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+  .client-sector.featured { color: var(--gavi-blue); font-weight: 700; }
+
+  /* =====================================================================
+     SECTION I — Location CTA (NEW: improved map placeholder)
+     ===================================================================== */
+  .location {
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .location::before {
+    content: '';
+    position: absolute;
+    bottom: -5%; left: -5%;
+    width: 40%;
+    height: 80%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 70'><polygon points='30,0 60,17.5 60,52.5 30,70 0,52.5 0,17.5' fill='none' stroke='%23246EB6' stroke-width='1' opacity='0.4'/></svg>");
+    background-size: 80px 92px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .location > .container { position: relative; z-index: 1; }
+  .location-grid {
+    display: grid; gap: var(--s-10);
+  }
+  @media (min-width: 1024px) { .location-grid { grid-template-columns: 1fr 1.1fr; gap: var(--s-12); align-items: center; } }
+  .location-address {
+    font-size: 16px; color: var(--ink-soft); line-height: 1.7; margin-bottom: var(--s-4);
+  }
+  .location-hours {
+    font-size: 14px; color: var(--ink-mute);
+    margin-bottom: var(--s-6); padding-left: var(--s-4);
+    border-left: 3px solid var(--gavi-blue);
+  }
+  .location-ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+
+  /* Branded map placeholder */
+  .map-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(15, 26, 43, 0.12);
+  }
+  .map-frame iframe { width: 100%; height: 100%; display: block; border: 0; }
+  .map-directions-overlay { position: absolute; top: var(--s-4); right: var(--s-4); z-index: 2; }
+  .map-directions-btn {
+    display: inline-flex; align-items: center;
+    background: var(--gavi-blue); color: #fff;
+    padding: 10px 16px; border-radius: 999px;
+    font-size: 13px; font-weight: 700;
+    box-shadow: 0 4px 14px rgba(36, 110, 182, 0.35);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .map-directions-btn:hover { background: var(--gavi-blue-dark); transform: translateY(-1px); }
+  
+  
+
+  /* =====================================================================
+     SECTION J — FAQ
+     ===================================================================== */
+  .faq { background: var(--paper-soft); }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: var(--s-3);
+    overflow: hidden;
+  }
+  .faq-item summary {
+    padding: var(--s-5); font-weight: 700; font-size: 15px;
+    color: var(--ink); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: var(--s-4); list-style: none; min-height: 56px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; color: var(--gavi-blue); font-size: 22px; font-weight: 400;
+    transition: transform 0.2s ease; flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-answer { padding: 0 var(--s-5) var(--s-5); font-size: 14px; color: var(--ink-mute); line-height: 1.7; }
+
+  /* =====================================================================
+     SECTION K — Workshop Gallery (NEW in v3)
+     Photo-slot placeholders for client to swap real images into
+     ===================================================================== */
+  .gallery { background: var(--paper-soft); position: relative; overflow: hidden; }
+  .gallery::before {
+    content: ''; position: absolute; top: -10%; right: -5%;
+    width: 35%; height: 60%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 70'><polygon points='30,0 60,17.5 60,52.5 30,70 0,52.5 0,17.5' fill='none' stroke='%23246EB6' stroke-width='1' opacity='0.4'/></svg>");
+    background-size: 80px 92px; opacity: 0.10; pointer-events: none;
+  }
+  .gallery > .container { position: relative; z-index: 1; }
+  .gallery-header {
+    display: flex; flex-direction: column; gap: var(--s-4);
+    margin-bottom: var(--s-10); align-items: flex-start;
+  }
+  @media (min-width: 760px) {
+    .gallery-header { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  }
+  .gallery-grid {
+    display: grid; gap: var(--s-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 540px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; } }
+  @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 240px; } }
+  /* First tile is the hero — spans 2 cols / 2 rows on desktop */
+  @media (min-width: 1024px) {
+    .gallery-tile:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+  }
+  .gallery-tile {
+    position: relative;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; overflow: hidden;
+    aspect-ratio: 4 / 3;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (min-width: 540px)  { .gallery-tile { aspect-ratio: auto; } }
+  .gallery-tile:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15, 26, 43, 0.10); }
+  /* When real photo gets added, the img covers the placeholder */
+  .gallery-tile img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .gallery-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: var(--s-2); padding: var(--s-4);
+    text-align: center;
+    background:
+      repeating-linear-gradient(135deg, var(--gavi-blue-tint) 0, var(--gavi-blue-tint) 14px, var(--paper-soft) 14px, var(--paper-soft) 28px);
+  }
+  .gallery-placeholder-label {
+    background: var(--paper); border: 1.5px dashed var(--gavi-blue);
+    padding: 8px 16px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; color: var(--gavi-blue);
+    letter-spacing: 0.06em;
+  }
+  .gallery-placeholder-spec {
+    font-size: 10px; color: var(--ink-mute);
+    background: rgba(255,255,255,0.85);
+    padding: 4px 10px; border-radius: 4px;
+    font-family: monospace;
+  }
+  .gallery-instagram {
+    margin-top: var(--s-8);
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 14px; padding: var(--s-6);
+    display: flex; gap: var(--s-4); align-items: center;
+    flex-wrap: wrap; justify-content: space-between;
+  }
+  .gallery-instagram-text { display: flex; align-items: center; gap: var(--s-4); flex: 1 1 auto; }
+  .gallery-instagram-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; flex-shrink: 0;
+  }
+  .gallery-instagram-icon svg { width: 22px; height: 22px; }
+  .gallery-instagram-copy h4 { font-size: 16px; margin-bottom: 2px; }
+  .gallery-instagram-copy p { font-size: 13px; color: var(--ink-mute); margin: 0; }
+
+  /* =====================================================================
+     SECTION L — Footer
+     ===================================================================== */
+  .footer {
+    background: var(--ink);
+    color: #B8C5D6;
+    padding: var(--s-16) 0 var(--s-8);
+  }
+  .footer-grid {
+    display: grid; gap: var(--s-10); grid-template-columns: 1fr;
+    margin-bottom: var(--s-10);
+  }
+  @media (min-width: 760px)  { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+  .footer-brand .logo-text { color: #fff; }
+  .footer-tagline {
+    margin-top: var(--s-4); font-size: 14px; color: #B8C5D6;
+    max-width: 340px; line-height: 1.6;
+  }
+  .footer h5 {
+    color: #fff; font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: var(--s-5);
+  }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: var(--s-3); }
+  .footer ul a { font-size: 14px; color: #B8C5D6; transition: color 0.15s ease; }
+  .footer ul a:hover { color: #fff; }
+  .footer-contact p { font-size: 14px; line-height: 1.8; color: #B8C5D6; }
+  .footer-bottom {
+    border-top: 1px solid #2A3A52;
+    padding-top: var(--s-6);
+    display: flex; flex-direction: column;
+    gap: var(--s-3); font-size: 12px; color: #8A99B1;
+  }
+  @media (min-width: 760px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+
+  /* =====================================================================
+     Floating WhatsApp button
+     ===================================================================== */
+  .whatsapp-btn {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--whatsapp); color: #fff;
+    border-radius: 999px; padding: 12px 18px;
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    font-weight: 700; font-size: 14px;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    z-index: 100; min-height: 48px;
+  }
+  .whatsapp-btn svg {
+    width: 22px; height: 22px;
+    animation: pulse-scale 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse-scale {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.15); }
+  }
+  .whatsapp-btn-label { display: none; }
+  @media (min-width: 760px) { .whatsapp-btn-label { display: inline; } }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute; top: -100px; left: 0;
+    background: var(--ink); color: #fff;
+    padding: var(--s-3) var(--s-5); z-index: 200;
+  }
+  .skip-link:focus { top: 0; }
+</style>
