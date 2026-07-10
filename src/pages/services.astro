@@ -175,8 +175,19 @@ import Base from '../layouts/Base.astro'
 <section id="body-paint" class="svc-section">
   <div class="container">
     <div class="feature-svc">
-      <div class="feature-svc-visual">
-        <img src="/images/body-paint.jpg" alt="Spray gun refinishing a car panel" loading="lazy" style="width:100%; height:100%; object-fit:cover;" />
+      <div class="feature-svc-visual bp-carousel" data-carousel>
+        <div class="bp-slides">
+          <figure class="bp-slide is-active"><img src="/images/bodypaint-1.jpg" alt="SUV masked for respray in the booth" loading="lazy" /></figure>
+          <figure class="bp-slide"><img src="/images/bodypaint-2.jpg" alt="Door panels refinished and drying" loading="lazy" /></figure>
+          <figure class="bp-slide"><img src="/images/bodypaint-3.jpg" alt="Colour-matched red panel mid-spray" loading="lazy" /></figure>
+          <figure class="bp-slide"><img src="/images/bodypaint-4.jpg" alt="Boot lid refinished in the booth" loading="lazy" /></figure>
+        </div>
+        <div class="bp-dots" role="tablist">
+          <button type="button" class="bp-dot is-active" data-idx="0" aria-label="Photo 1"></button>
+          <button type="button" class="bp-dot" data-idx="1" aria-label="Photo 2"></button>
+          <button type="button" class="bp-dot" data-idx="2" aria-label="Photo 3"></button>
+          <button type="button" class="bp-dot" data-idx="3" aria-label="Photo 4"></button>
+        </div>
       </div>
 
       <div>
@@ -238,7 +249,7 @@ import Base from '../layouts/Base.astro'
       <div class="svc-card">
         <span class="svc-code">GSW</span>
         <h3>GAVI Service on Wheels</h3>
-        <p>The single-vehicle mobile service. Same kit, on your street. Launching once the second van lands.</p>
+        <p>The single-vehicle mobile service. Launching soon.</p>
         <div class="svc-detail">Launching soon</div>
       </div>
 
@@ -260,7 +271,7 @@ import Base from '../layouts/Base.astro'
       <div>
         <span class="eyebrow on-dark" style="color:rgba(255,255,255,0.85);">FLEET &amp; CORPORATE</span>
         <h2>One contract. Every vehicle on your payroll.</h2>
-        <p>From insurance brokers to schools to faith organisations, we run scheduled service for fleets of 3 to 300. Periodic checks, repair, mobile-workshop visits to your yard, and one consolidated bill at month-end.</p>
+        <p>From insurance brokers to schools to faith-based organisations, we run scheduled service for fleets of 3 to 300. Periodic checks, repair, mobile-workshop visits to your yard, and one consolidated bill at month-end.</p>
         <a href="/contact" class="btn btn-on-light">Talk to our fleet desk →</a>
       </div>
       <div class="fleet-stats">
@@ -291,7 +302,7 @@ import Base from '../layouts/Base.astro'
     <div class="booking-cta-card">
       <span class="eyebrow">READY TO BOOK</span>
       <h2>Tell us what's wrong. We'll handle the rest.</h2>
-      <p>Fill the form on our home page and we'll call you back within the hour during work time. Or speak to a Service Advisor now.</p>
+      <p>Click Book a Service and fill the short form. We'll call you back within the hour during work time. Or speak to a Service Advisor now.</p>
       <div class="booking-cta-actions">
         <a href="/#booking" class="btn btn-primary">Book a Service →</a>
         <a href="tel:+2347053009305" class="btn btn-outline">Call +234 705 300 9305</a>
@@ -301,6 +312,25 @@ import Base from '../layouts/Base.astro'
   </div>
 </section>
 </Base>
+
+<script>
+  document.querySelectorAll('.bp-carousel').forEach((root) => {
+    const slides = Array.from(root.querySelectorAll('.bp-slide'))
+    const dots = Array.from(root.querySelectorAll('.bp-dot'))
+    let cur = 0, timer = null
+    const go = (i) => {
+      slides[cur].classList.remove('is-active'); dots[cur]?.classList.remove('is-active')
+      cur = (i + slides.length) % slides.length
+      slides[cur].classList.add('is-active'); dots[cur]?.classList.add('is-active')
+    }
+    const start = () => (timer = setInterval(() => go(cur + 1), 4000))
+    const stop = () => timer && clearInterval(timer)
+    dots.forEach((d, i) => d.addEventListener('click', () => { stop(); go(i); start() }))
+    root.addEventListener('mouseenter', stop)
+    root.addEventListener('mouseleave', start)
+    start()
+  })
+</script>
 
 <style>
 /* Services page specific */
@@ -469,4 +499,14 @@ import Base from '../layouts/Base.astro'
   .booking-cta-actions {
     display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap;
   }
+
+  /* Body & paint mini carousel */
+  .bp-carousel { position: relative; overflow: hidden; }
+  .bp-slides { position: absolute; inset: 0; }
+  .bp-slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 0.7s ease; }
+  .bp-slide.is-active { opacity: 1; }
+  .bp-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bp-dots { position: absolute; bottom: var(--s-4); right: var(--s-4); display: flex; gap: var(--s-2); z-index: 2; }
+  .bp-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background 0.2s, width 0.2s; }
+  .bp-dot.is-active { background: #fff; width: 22px; border-radius: 4px; }
 </style>

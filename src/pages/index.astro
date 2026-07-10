@@ -321,8 +321,8 @@ import OemMarquee from '../components/OemMarquee.astro'
     <div class="container">
       <div class="center" style="margin-bottom: var(--s-10);">
         <span class="eyebrow">Trusted By</span>
-        <h2 class="section-title">Brands &amp; institutions that <span class="blue-word">trust us</span>.</h2>
-        <p class="section-lede">Financial institutions, schools, and faith organisations across Nigeria run their vehicles on our service.</p>
+        <h2 class="section-title">Brands &amp; institutions <span class="blue-word">we've served</span>.</h2>
+        <p class="section-lede">Financial institutions, schools, and faith-based organisations across Nigeria have trusted GAVI AFRICA with their vehicles.</p>
       </div>
       <div class="clients-grid">
         <div class="client"><div class="client-name">AMCON</div><div class="client-sector featured">Federal Agency</div></div>
@@ -439,7 +439,7 @@ import OemMarquee from '../components/OemMarquee.astro'
             <em>Early Bird from 6:30 AM by booking — T&amp;Cs apply.</em>
           </p>
           <div class="location-ctas">
-            <a href="https://maps.google.com" class="btn btn-primary">Get Directions →</a>
+            <a href="https://maps.app.goo.gl/vGPRSB1B4hJGyYT18" target="_blank" rel="noopener" class="btn btn-primary">Get Directions →</a>
             <a href="tel:+2347053009305" class="btn btn-outline">Call +234 705 300 9305</a>
           </div>
         </div>
@@ -514,10 +514,11 @@ import OemMarquee from '../components/OemMarquee.astro'
 <script>
   // Booking form → Google Sheets via Apps Script web app.
   // Paste your deployed Apps Script /exec URL below.
-  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyVAHfEYIeovFoGIQMpPlS6XnUi_1mVH_KVHZbgrsAA4e3ItzXxAtl86xIL3DUvT0KC/exec'
+  const SHEET_ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE'
 
   const bookingForm = document.getElementById('booking-form')
   if (bookingForm) {
+      bookingForm.addEventListener('invalid', () => bookingForm.classList.add('show-errors'), true)
     bookingForm.addEventListener('submit', async (e) => {
       e.preventDefault()
       const btn = bookingForm.querySelector('button[type="submit"]')
@@ -1418,4 +1419,11 @@ import OemMarquee from '../components/OemMarquee.astro'
     padding: var(--s-3) var(--s-5); z-index: 200;
   }
   .skip-link:focus { top: 0; }
+
+  form.show-errors input:invalid,
+  form.show-errors select:invalid,
+  form.show-errors textarea:invalid {
+    border-color: #D63031 !important;
+    background: #FFF5F5;
+  }
 </style>
