@@ -324,20 +324,33 @@ import OemMarquee from '../components/OemMarquee.astro'
         <h2 class="section-title">Brands &amp; institutions <span class="blue-word">we've served</span>.</h2>
         <p class="section-lede">Financial institutions, schools, and faith-based organisations across Nigeria have trusted GAVI AFRICA with their vehicles.</p>
       </div>
-      <div class="clients-grid">
-        <div class="client"><div class="client-name">AMCON</div><div class="client-sector featured">Federal Agency</div></div>
-        <div class="client"><div class="client-name">BSN (Bible Society of Nigeria)</div><div class="client-sector">Faith / NGO</div></div>
-        <div class="client"><div class="client-name">First Standard Insurance Brokers</div><div class="client-sector featured">Financial Services</div></div>
-        <div class="client"><div class="client-name">Precise Financial Services</div><div class="client-sector featured">Financial Services</div></div>
-        <div class="client"><div class="client-name">Valmon Securities</div><div class="client-sector featured">Financial Services</div></div>
-        <div class="client"><div class="client-name">Edgenet Consulting</div><div class="client-sector">Consulting</div></div>
-        <div class="client"><div class="client-name">Corona Secondary School, Agbara</div><div class="client-sector">Education</div></div>
-        <div class="client"><div class="client-name">Solomon Grace Schools</div><div class="client-sector">Education</div></div>
-        <div class="client"><div class="client-name">Dimeji International School</div><div class="client-sector">Education</div></div>
-        <div class="client"><div class="client-name">Inspired Christian Learning Center</div><div class="client-sector">Education</div></div>
-        <div class="client"><div class="client-name">CAC Kingdom Power Assembly</div><div class="client-sector">Faith / NGO</div></div>
-        <div class="client"><div class="client-name">&amp; many more</div><div class="client-sector featured">Across Nigeria</div></div>
+      <div class="client-marquee" aria-label="Client logos scrolling">
+        <div class="client-track">
+          <span class="client-logo"><img src="/images/clients/client-amcon.png" alt="AMCON" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-bsn.png" alt="BSN — The Bible Society of Nigeria" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-firststandard.png" alt="First Standard Insurance Brokers" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-pfs.png" alt="Precise Financial Systems" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-valmon.png" alt="Valmon Securities" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-edgenet.png" alt="EdgeNet Consulting" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-corona.png" alt="Corona Secondary School, Agbara" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-solomongrace.png" alt="Solomon Grace Int'l Schools" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-dimeji.png" alt="Dimeji International School" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-inspired.png" alt="Inspired Christian Learning Center" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-cac-kpa.png" alt="CAC Kingdom Power Assembly" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-amcon.png" alt="AMCON" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-bsn.png" alt="BSN — The Bible Society of Nigeria" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-firststandard.png" alt="First Standard Insurance Brokers" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-pfs.png" alt="Precise Financial Systems" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-valmon.png" alt="Valmon Securities" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-edgenet.png" alt="EdgeNet Consulting" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-corona.png" alt="Corona Secondary School, Agbara" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-solomongrace.png" alt="Solomon Grace Int'l Schools" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-dimeji.png" alt="Dimeji International School" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-inspired.png" alt="Inspired Christian Learning Center" loading="lazy" /></span>
+          <span class="client-logo"><img src="/images/clients/client-cac-kpa.png" alt="CAC Kingdom Power Assembly" loading="lazy" /></span>
+        </div>
       </div>
+      <p class="clients-more">…and many more across Nigeria.</p>
     </div>
   </section>
 
@@ -1425,5 +1438,38 @@ import OemMarquee from '../components/OemMarquee.astro'
   form.show-errors textarea:invalid {
     border-color: #D63031 !important;
     background: #FFF5F5;
+  }
+
+  /* Client logo marquee */
+  .client-marquee {
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    padding: var(--s-4) 0;
+  }
+  .client-track {
+    display: flex;
+    gap: var(--s-16);
+    align-items: center;
+    width: max-content;
+    animation: oem-scroll 45s linear infinite;
+  }
+  .client-marquee:hover .client-track { animation-play-state: paused; }
+  .client-logo { flex-shrink: 0; display: inline-flex; align-items: center; }
+  .client-logo img {
+    height: 56px;
+    width: auto;
+    display: block;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  .client-logo:hover img { opacity: 1; }
+  @media (min-width: 760px) { .client-logo img { height: 68px; } }
+  .clients-more {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-top: var(--s-5);
   }
 </style>
