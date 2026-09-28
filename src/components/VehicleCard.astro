@@ -8,7 +8,9 @@ import {urlFor} from '../lib/sanity.js'
 const {vehicle} = Astro.props
 
 // Format price with commas: 48500000 -> "48,500,000"
-const priceStr = new Intl.NumberFormat('en-NG').format(vehicle.price)
+// Price is optional — listings without one show "Price on request"
+const hasPrice = typeof vehicle.price === 'number' && vehicle.price > 0
+const priceStr = hasPrice ? new Intl.NumberFormat('en-NG').format(vehicle.price) : null
 
 // Badge label + class based on condition + status
 let badgeLabel = 'New'
@@ -26,7 +28,8 @@ if (vehicle.status === 'sold') {
 
 // Price label depends on condition + status
 let priceLabel = 'From'
-let priceValue = `₦${priceStr}`
+let priceValue = hasPrice ? `₦${priceStr}` : 'On request'
+if (!hasPrice) priceLabel = 'Price'
 if (vehicle.status === 'sold') {
   priceLabel = 'Status'
   priceValue = 'Sold'

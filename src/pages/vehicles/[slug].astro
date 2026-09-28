@@ -15,7 +15,8 @@ const vehicle = await sanityClient.fetch(vehicleBySlugQuery, {slug})
 
 if (!vehicle) return Astro.redirect('/vehicles')
 
-const priceStr = new Intl.NumberFormat('en-NG').format(vehicle.price)
+const hasPrice = typeof vehicle.price === 'number' && vehicle.price > 0
+const priceStr = hasPrice ? new Intl.NumberFormat('en-NG').format(vehicle.price) : null
 const mileageStr = new Intl.NumberFormat('en-NG').format(vehicle.mileageKm)
 const heroImg = vehicle.photos?.[0] ? urlFor(vehicle.photos[0]).width(1600).height(1000).fit('crop').url() : null
 const thumbs = (vehicle.photos || []).slice(1).map(p => ({
@@ -54,14 +55,14 @@ const thumbs = (vehicle.photos || []).slice(1).map(p => ({
         </div>
         <aside class="detail-sidebar">
           <div class="price-block">
-            <div class="price-label">{vehicle.condition === 'new' ? 'From' : 'Asking'}</div>
-            <div class="price">₦{priceStr}</div>
+            <div class="price-label">{!hasPrice ? 'Price' : vehicle.condition === 'new' ? 'From' : 'Asking'}</div>
+            <div class="price">{hasPrice ? `₦${priceStr}` : 'On request'}</div>
           </div>
           <dl class="spec-list">
             <div><dt>Make</dt><dd>{vehicle.make}</dd></div>
             <div><dt>Year</dt><dd>{vehicle.year}</dd></div>
             <div><dt>Body</dt><dd>{vehicle.bodyType}</dd></div>
-            <div><dt>Fuel</dt><dd>{vehicle.fuel}</dd></div>
+            {vehicle.fuel && <div><dt>Fuel</dt><dd>{vehicle.fuel}</dd></div>}
             {vehicle.drivetrain && <div><dt>Drivetrain</dt><dd>{vehicle.drivetrain}</dd></div>}
             <div><dt>Mileage</dt><dd>{mileageStr} km</dd></div>
             <div><dt>Condition</dt><dd>{vehicle.condition === 'new' ? 'Brand new' : 'Pre-owned'}</dd></div>
